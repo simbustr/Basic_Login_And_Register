@@ -5,7 +5,7 @@ module.exports.login = async (req, res) => {
 
     const { Email, Password } = req.body;   
 
- console.log(Email,"kkkk")
+
 
   try {
     // Check if email and password are provided
@@ -20,14 +20,16 @@ module.exports.login = async (req, res) => {
     if (!customer) {
       return res.status(401).json({ message: "Invalid email or password" });
     }
+    
 
     // If customer found, generate JWT token
-    const token = jwt.sign({ customerId: customer._id }, "your_secret_key", {
-      expiresIn: "1h",
-    });
+    // const token = jwt.sign({ customerId: customer._id }, "your_secret_key", {
+    //   expiresIn: "1h",
+    // });
 
     // Return token to the client
-    res.status(200).json({ token });
+    res.status(200).json({ customer });
+    console.res.status(200)("login Succesfully");
   } catch (error) {
     console.error("Error during login:", error);
     res.status(500).json({ message: "Internal server error" });
